@@ -22,7 +22,12 @@ for(let i in heroes){
 
 
 
+console.log('----------For of----------');
 
+for (let heroe of heroes) {
+   console.log(heroe)
+    
+}
 
 
 
