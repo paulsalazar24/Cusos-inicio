@@ -1,7 +1,7 @@
 //patron modulo
 
 //funcion anonima 
-(()=>{
+const miModulo = (()=>{
     'use strict'
 
         let deck = [];
@@ -24,9 +24,17 @@
 
         const inicializarJuego = (numJugadores = 2) => {
                 deck = crearDeck();
+
+                puntosJugadores = [];
                 for (let i = 0; i< numJugadores; i++){
                     puntosJugadores.push(0);
                 }
+
+                puntosHTML.forEach( elem => elem.innerText = 0 );
+                divCartasJugadores.forEach( elem => elem.innerHTML = '' );
+        
+                btnPedir.disabled   = false;
+                btnDetener.disabled = false;
          }
 
         //esta funcion crea un nuevo deck
@@ -104,7 +112,7 @@
                 }else{
                         alert('Computadora gana');
                 }
-            }, 10); 
+            }, 100); 
 
         }
 
@@ -150,29 +158,19 @@
         btnDetener.addEventListener('click', ()=> {
             btnPedir.disabled = true;
             btnDetener.disabled = true;
-            turnoComputadora( puntosJugador);
+            turnoComputadora( puntosJugadores[0]);
         });
 
 
         btnNuevo.addEventListener('click', ()=>{
 
             inicializarJuego();
-             console.clear();
-            // deck = crearDeck();
-            // puntosJugador = 0;
-            // puntosComputadora = 0;
 
-
-            // puntosHTML[0].innerText = 0;
-            // puntosHTML[1].innerText = 0;
-
-            // divCartasComputadora.innerHTML = '';
-            // divCartasJugador.innerHTML = '';
-            // btnPedir.disabled = false;
-            // btnDetener.disabled = false;
         });
 
-
+        return{
+        nuevoJuego: inicializarJuego
+        };
 
 })();
 
